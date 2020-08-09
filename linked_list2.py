@@ -115,6 +115,8 @@ class LinkedList:
                     prev_node.next = prev_node.next.next
                     return
 
+
+
      def insert_value_at_index(self, index, value):
          # verify if index exists
           if index < 0 or index >= self.get_length():
@@ -141,6 +143,8 @@ class LinkedList:
                     new_node.next = itr
 
      def insert_overwrite_value(self, value, new_value):
+         # you could use previous methods
+         
           # if list is empty
           if self.head == None:
                new_node = Node(value)
@@ -157,6 +161,40 @@ class LinkedList:
                current = current.next          
 
           print(f'value {value} not found')
+
+     def insert_after_value(self, value, new_value):
+          # locate node of value
+          current = self.head  # start 
+
+          # Never found value, don't add to head
+          # if self.head == None:
+          #      new_node = Node(value)
+          #      self.head = new_node
+
+
+          while current:
+               if current.value == value:
+                    # verify if there is next
+                    if current.next == None:
+                         new_node = Node(new_value)
+                         current.next = new_node
+                         return 
+                    else:
+                         node_after_insert = current.next  
+                         new_node = Node(new_value) 
+                         current.next = new_node
+                         current.next.next = node_after_insert
+                         return 
+               current = current.next
+
+          print(f' value {value} not found in linked list')                    
+
+                         
+
+
+
+
+
 
 # if __name__ == '__main__':
 #      new_list = LinkedList()
@@ -199,4 +237,15 @@ new_list.print()  # New Firsty --> 0 --> One --> 1 --> 2 -->
 
 new_list.insert_overwrite_value("New Firsty", "NEWER Firsty")
 new_list.print()  # NEWER Firsty --> 0 --> One --> 1 --> 2 -->
+new_list.insert_overwrite_value("One", "New ONE")
+new_list.print() # NEWER Firsty --> 0 --> New ONE --> 1 --> 2 -->
 
+new_list.insert_after_value("New ONE", "added AFTER")
+new_list.print()
+
+new_list.insert_after_value("Newer", "added AFTER")
+new_list.insert_after_value("NEWER Firsty", "After NEWER Firsty")
+new_list.print()
+# new empty list
+new_list2 = LinkedList()
+new_list2.insert_after_value("first", "new_first")
