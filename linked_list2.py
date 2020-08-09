@@ -139,3 +139,9 @@ new_list.print()   # New First --> FirstTail --> Newer Tail --> 0 --> 1 --> 2 --
 
 new_list.remove_at_index_2(1)
 new_list.print()  # New First --> Newer Tail --> 0 --> 1 --> 2 --> 
+
+new_list.remove_at_index_2(0)
+new_list.print() # Newer Tail --> 0 --> 1 --> 2 -->
+
+new_list.remove_at_index(0)
+new_list.print() # 0 --> 1 --> 2 --> 
