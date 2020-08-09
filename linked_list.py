@@ -24,9 +24,10 @@ class Linked_List:
           current.next = new_node
 
      def add_to_head(self,value):
-          orig_head = self.head
           new_node = Node(value)
-          new_node.next = orig_head
+          orig = self.head
+          new_node.next = orig
+          print(orig.next)
 
           
      def length(self):
@@ -100,7 +101,7 @@ if __name__ == "__main__":
      new_list.print_list()   # ['First-->', '2-->', '3-->']
      new_list.add_to_head("New First")
      new_list.print_list()
-     new_list.listprint()
+     # new_list.listprint()
 
 # print(new_list.get(2))   # 3
 
