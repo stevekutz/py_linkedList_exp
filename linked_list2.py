@@ -115,6 +115,49 @@ class LinkedList:
                     prev_node.next = prev_node.next.next
                     return
 
+     def insert_value_at_index(self, index, value):
+         # verify if index exists
+          if index < 0 or index >= self.get_length():
+               print(f' Error: index out of range')
+               return
+
+          # basic insert at head
+          if index == 0:
+               new_node = Node(value) # create new node
+               new_node.next = self.head # point to orig head
+               self.head = new_node # reset head to new_node
+               return 
+
+          count = 0
+          itr = self.head
+
+          while itr:
+               prev_node = itr
+               itr = itr.next
+               count += 1
+               if count == index:
+                    new_node = Node(value)
+                    prev_node.next = new_node
+                    new_node.next = itr
+
+     def insert_overwrite_value(self, value, new_value):
+          # if list is empty
+          if self.head == None:
+               new_node = Node(value)
+               self.head = new_node
+               return
+
+          # if list not empty, find value
+          current = self.head
+          
+          while current:
+               if current.value == value:
+                    current.value = new_value
+                    return
+               current = current.next          
+
+          print(f'value {value} not found')
+
 # if __name__ == '__main__':
 #      new_list = LinkedList()
 #      new_list.insert_at_head("Orig First")
@@ -144,4 +187,16 @@ new_list.remove_at_index_2(0)
 new_list.print() # Newer Tail --> 0 --> 1 --> 2 -->
 
 new_list.remove_at_index(0)
-new_list.print() # 0 --> 1 --> 2 --> 
+new_list.print() # 0 --> 1 --> 2 -->
+
+new_list.remove_at_index(100) # Error: index out of range
+new_list.remove_at_index(-10) # Error: index out of range
+
+new_list.insert_value_at_index(1, "One")
+new_list.print()  # 0 --> One --> 1 --> 2 -->
+new_list.insert_value_at_index(0, "New Firsty")
+new_list.print()  # New Firsty --> 0 --> One --> 1 --> 2 -->
+
+new_list.insert_overwrite_value("New Firsty", "NEWER Firsty")
+new_list.print()  # NEWER Firsty --> 0 --> One --> 1 --> 2 -->
+
