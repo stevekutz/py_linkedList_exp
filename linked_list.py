@@ -1,5 +1,5 @@
 class Node:
-     def __init__(self, value = None):
+     def __init__(self, value = None, next = None):
           self.value = value
           self.next = None
           self.last = None
@@ -8,15 +8,12 @@ class Node:
           return str(self.value)
 
 class Linked_List:
+
+     # this approach sets head to a blank Node
      def __init__(self):    # head nevers holds data, not indexable, user cannot acccess
-          self.head = Node() # used as placeholder to point to 1st element in LL, NOT a DATA NODE!!!
+          self.head = Node() # used as placeholder to point to 1st element in LL, NOT a DATA NODE!!!  
 
-     def __str__(self):
-          return str(self.value)
-
-     def __len__(self):
-          return len
-
+     # add to end
      def append(self, value):
           new_node = Node(value)
           current = self.head
@@ -26,6 +23,12 @@ class Linked_List:
           # Add new node to end
           current.next = new_node
 
+     def add_to_head(self,value):
+          orig_head = self.head
+          new_node = Node(value)
+          new_node.next = orig_head
+
+          
      def length(self):
           current = self.head
           total = 0
@@ -45,6 +48,15 @@ class Linked_List:
                #elements.append(current_node.value)
                elements.append(item)
           print(f' elements: {elements}')
+
+
+     def listprint(self):
+          elements = []
+          current_node = self.head
+          while current_node != None:
+               item = str(current_node.value) + ">>>"
+               elements.append(item)
+               current_node.next
 
 
      def get(self, index):
@@ -79,15 +91,28 @@ class Linked_List:
 
 
 # create instance
-new_list = Linked_List()
+if __name__ == "__main__":
+     new_list = Linked_List()
 
-new_list.append("First")
-new_list.append(2)
-new_list.append(3)
-new_list.print_list()   # ['First-->', '2-->', '3-->']
-print(new_list.get(2))   # 3
+     new_list.append("First")
+     new_list.append(2)
+     new_list.append(3)
+     new_list.print_list()   # ['First-->', '2-->', '3-->']
+     new_list.add_to_head("New First")
+     new_list.print_list()
+     new_list.listprint()
 
-new_list.delete(1)  # deletes value '2' at index 1
-new_list.print_list() # ['First-->', '3-->']
+# print(new_list.get(2))   # 3
 
-print(new_list.length())
+# new_list.delete(1)  # deletes value '2' at index 1
+# new_list.print_list() # ['First-->', '3-->']
+
+# print(new_list.length())
+# new_list.print_list()
+
+
+# if __name__ == '__main__':
+#      new_list = Linked_List()
+#      new_list.append("First")
+#      new_list.insert_at_head("New First")
+#      new_list.print()
