@@ -182,6 +182,29 @@ class LinkedList:
 
           print(f' value {value} not found in linked list')                    
 
+     def insert_before_value(self, value, new_value):
+          current = self.head
+          count = 0
+
+               
+          if count == 0 and current.value == value:
+               new_node = Node(new_value)
+               new_node.next = self.head
+               self.head = new_node
+               return
+
+          while current.next:
+               if current.next.value == value:
+                    new_node = Node(new_value)
+                    orig_current_next = current.next  # placeholder for pointer to rest of list
+                    current.next = new_node
+                    new_node.next = orig_current_next
+                    break
+               current = current.next  
+
+          print(f' value {value} is not in linked list')          
+
+
                          
      def remove_by_value(self, value):
           current = self.head
@@ -320,3 +343,10 @@ new_list.print() # 0 --> 1 --> 2 -->
 # new_list.remove_by_index(0)
 # new_list.print() # 1 --> 2 --> 
 
+new_list.insert_before_value( 1, "Before")
+new_list.print() # 0 --> Before --> 1 --> 2 -->
+
+new_list.insert_before_value("Before", "pre-Before")
+new_list.print() # 0 --> pre-Before --> Before --> 1 --> 2 --> 
+
+new_list.insert_before_value("Not here", "not inserted") # value Not here is not in linked list
