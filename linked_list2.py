@@ -163,14 +163,7 @@ class LinkedList:
           print(f'value {value} not found')
 
      def insert_after_value(self, value, new_value):
-          # locate node of value
           current = self.head  # start 
-
-          # Never found value, don't add to head
-          # if self.head == None:
-          #      new_node = Node(value)
-          #      self.head = new_node
-
 
           while current:
                if current.value == value:
@@ -190,11 +183,66 @@ class LinkedList:
           print(f' value {value} not found in linked list')                    
 
                          
+     def remove_by_value(self, value):
+          current = self.head
+
+          # Case 1: location is head
+          if current.value == value:
+               self.head = current.next # reset head to next node
+               return 
+
+          # Case 2: location is somewhere in list
+          while current.next:
+               if current.next.value == value:
+                    current.next = current.next.next
+                    break
+               current = current.next
+                         
+          print(f' value {value} is not in linked list ')
 
 
+     def remove_by_value2(self, value):
+          current = self.head
+
+          # Case 1 node is head
+          if current.value == value:
+               self.head = current.next # reset head to next node >> None
+               return 
+
+          # Case 2 node is inside list
+          prev_node = current
+          delete_target = current.next
+
+          while prev_node:
+               if delete_target.value == value:
+                    prev_node.next = target_node.next
+                    return
+
+               prev_node = current
+               delete_target = current.next          
+          
+          print(f' value {value} does not exist in linked list')
 
 
+     def remove_by_index(self, index):
+          current = self.head
 
+          if index < 0 or index >= self.get_length():
+               print(f' ERROR: index out of range')
+
+          count = 0    
+          while current != None:
+               # if index is head
+               if index == 0:
+                    self.head = current.next 
+                    return
+
+               # if index is within list
+               count += 1
+               if index == count:
+                    current.next = current.next.next   
+
+               current = current.next     
 
 # if __name__ == '__main__':
 #      new_list = LinkedList()
@@ -241,11 +289,34 @@ new_list.insert_overwrite_value("One", "New ONE")
 new_list.print() # NEWER Firsty --> 0 --> New ONE --> 1 --> 2 -->
 
 new_list.insert_after_value("New ONE", "added AFTER")
-new_list.print()
+new_list.print() # NEWER Firsty --> 0 --> New ONE --> added AFTER --> 1 --> 2 -->
 
-new_list.insert_after_value("Newer", "added AFTER")
+new_list.insert_after_value("Newer", "added AFTER") 
+# value Newer not found in linked list
 new_list.insert_after_value("NEWER Firsty", "After NEWER Firsty")
-new_list.print()
-# new empty list
+new_list.print()  # NEWER Firsty --> After NEWER Firsty --> 0 --> New ONE --> added AFTER --> 1 --> 2 --> 
+# # new empty list
 new_list2 = LinkedList()
 new_list2.insert_after_value("first", "new_first")
+# value first not found in linked list
+
+new_list.remove_by_value("After NEWER Firsty")
+new_list.print() # NEWER Firsty --> 0 --> New ONE --> added AFTER --> 1 --> 2 --> 
+new_list.remove_by_value("NEWER Firsty")
+new_list.print() # 0 --> New ONE --> added AFTER --> 1 --> 2 -->
+
+# only 1 node
+new_list2.insert_at_head("Loner")
+new_list2.print() # Loner -->  
+new_list2.remove_by_value("Loner")
+new_list2.print() # Linked list is empty
+
+new_list.remove_by_value("added AFTER")
+new_list.print() # 0 --> New ONE --> 1 --> 2 -->
+
+new_list.remove_by_index(1)
+new_list.print() # 0 --> 1 --> 2 -->
+
+# new_list.remove_by_index(0)
+# new_list.print() # 1 --> 2 --> 
+

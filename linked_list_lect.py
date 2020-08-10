@@ -94,12 +94,12 @@ if __name__ == "__main__":
     print(l.delete(0))
     print(l)
 
-    print(l.find(0))
-    print(l.find(3))
-    print(l.find(1))
+#     print(l.find(0))
+#     print(l.find(3))
+#     print(l.find(1))
 
-    l.insert_or_overwrite_value(4)
-    print(l)
-    l.insert_or_overwrite_value(4)
-    print(l)
+#     l.insert_or_overwrite_value(4)
+#     print(l)
+#     l.insert_or_overwrite_value(4)
+#     print(l)
 
