@@ -178,6 +178,7 @@ class LinkedList:
                          current.next = new_node
                          current.next.next = node_after_insert
                          return 
+               # increment to next node
                current = current.next
 
           print(f' value {value} not found in linked list')                    
@@ -267,86 +268,124 @@ class LinkedList:
 
                current = current.next     
 
+
+
+     def loop_to_value(self, value):
+          current = self.head
+
+          # iterate to find value address & last node
+          val_add = None
+
+          # # head loop to itself
+          # if current.value == value:
+          #      val_add = current.next
+
+
+          # iterate to find adddress of value & point tail to address
+          while current.next:
+               if current.next.value == value:
+                    val_add = current.next
+
+               # iterate to next node
+               current = current.next     
+               # find location of tail
+           
+          # current should be point to tail now
+          current.next = val_add
+
+
+
+
 # if __name__ == '__main__':
 #      new_list = LinkedList()
 #      new_list.insert_at_head("Orig First")
 #      new_list.insert_at_head("New First")
 #      new_list.print()        
 
-new_list = LinkedList()
-new_list.insert_at_head(1)
-new_list.insert_at_head("New First")
-new_list.print()  # New First --> 1 --> 
-new_list.insert_at_tail("FirstTail")
-new_list.insert_at_tail("Newer Tail")
-new_list.print()  # New First --> 1 --> FirstTail --> Newer Tail --> 
+# new_list = LinkedList()
+# new_list.insert_at_head(1)
+# new_list.insert_at_head("New First")
+# new_list.print()  # New First --> 1 --> 
+# new_list.insert_at_tail("FirstTail")
+# new_list.insert_at_tail("Newer Tail")
+# new_list.print()  # New First --> 1 --> FirstTail --> Newer Tail --> 
 
-my_list = list(range(3))
-print(f' {my_list}')  # [0, 1, 2]
-new_list.insert_list_at_tail(my_list)
-new_list.print()   # New First --> 1 --> FirstTail --> Newer Tail --> 0 --> 1 --> 2 -->
+# my_list = list(range(3))
+# print(f' {my_list}')  # [0, 1, 2]
+# new_list.insert_list_at_tail(my_list)
+# new_list.print()   # New First --> 1 --> FirstTail --> Newer Tail --> 0 --> 1 --> 2 -->
 
-new_list.remove_at_index(1)
-new_list.print()   # New First --> FirstTail --> Newer Tail --> 0 --> 1 --> 2 --> 
+# new_list.remove_at_index(1)
+# new_list.print()   # New First --> FirstTail --> Newer Tail --> 0 --> 1 --> 2 --> 
 
-new_list.remove_at_index_2(1)
-new_list.print()  # New First --> Newer Tail --> 0 --> 1 --> 2 --> 
+# new_list.remove_at_index_2(1)
+# new_list.print()  # New First --> Newer Tail --> 0 --> 1 --> 2 --> 
 
-new_list.remove_at_index_2(0)
-new_list.print() # Newer Tail --> 0 --> 1 --> 2 -->
+# new_list.remove_at_index_2(0)
+# new_list.print() # Newer Tail --> 0 --> 1 --> 2 -->
 
-new_list.remove_at_index(0)
-new_list.print() # 0 --> 1 --> 2 -->
+# new_list.remove_at_index(0)
+# new_list.print() # 0 --> 1 --> 2 -->
 
-new_list.remove_at_index(100) # Error: index out of range
-new_list.remove_at_index(-10) # Error: index out of range
+# new_list.remove_at_index(100) # Error: index out of range
+# new_list.remove_at_index(-10) # Error: index out of range
 
-new_list.insert_value_at_index(1, "One")
-new_list.print()  # 0 --> One --> 1 --> 2 -->
-new_list.insert_value_at_index(0, "New Firsty")
-new_list.print()  # New Firsty --> 0 --> One --> 1 --> 2 -->
+# new_list.insert_value_at_index(1, "One")
+# new_list.print()  # 0 --> One --> 1 --> 2 -->
+# new_list.insert_value_at_index(0, "New Firsty")
+# new_list.print()  # New Firsty --> 0 --> One --> 1 --> 2 -->
 
-new_list.insert_overwrite_value("New Firsty", "NEWER Firsty")
-new_list.print()  # NEWER Firsty --> 0 --> One --> 1 --> 2 -->
-new_list.insert_overwrite_value("One", "New ONE")
-new_list.print() # NEWER Firsty --> 0 --> New ONE --> 1 --> 2 -->
+# new_list.insert_overwrite_value("New Firsty", "NEWER Firsty")
+# new_list.print()  # NEWER Firsty --> 0 --> One --> 1 --> 2 -->
+# new_list.insert_overwrite_value("One", "New ONE")
+# new_list.print() # NEWER Firsty --> 0 --> New ONE --> 1 --> 2 -->
 
-new_list.insert_after_value("New ONE", "added AFTER")
-new_list.print() # NEWER Firsty --> 0 --> New ONE --> added AFTER --> 1 --> 2 -->
+# new_list.insert_after_value("New ONE", "added AFTER")
+# new_list.print() # NEWER Firsty --> 0 --> New ONE --> added AFTER --> 1 --> 2 -->
 
-new_list.insert_after_value("Newer", "added AFTER") 
-# value Newer not found in linked list
-new_list.insert_after_value("NEWER Firsty", "After NEWER Firsty")
-new_list.print()  # NEWER Firsty --> After NEWER Firsty --> 0 --> New ONE --> added AFTER --> 1 --> 2 --> 
-# # new empty list
-new_list2 = LinkedList()
-new_list2.insert_after_value("first", "new_first")
-# value first not found in linked list
+# new_list.insert_after_value("Newer", "added AFTER") 
+# # value Newer not found in linked list
+# new_list.insert_after_value("NEWER Firsty", "After NEWER Firsty")
+# new_list.print()  # NEWER Firsty --> After NEWER Firsty --> 0 --> New ONE --> added AFTER --> 1 --> 2 --> 
+# # # new empty list
+# new_list2 = LinkedList()
+# new_list2.insert_after_value("first", "new_first")
+# # value first not found in linked list
 
-new_list.remove_by_value("After NEWER Firsty")
-new_list.print() # NEWER Firsty --> 0 --> New ONE --> added AFTER --> 1 --> 2 --> 
-new_list.remove_by_value("NEWER Firsty")
-new_list.print() # 0 --> New ONE --> added AFTER --> 1 --> 2 -->
+# new_list.remove_by_value("After NEWER Firsty")
+# new_list.print() # NEWER Firsty --> 0 --> New ONE --> added AFTER --> 1 --> 2 --> 
+# new_list.remove_by_value("NEWER Firsty")
+# new_list.print() # 0 --> New ONE --> added AFTER --> 1 --> 2 -->
 
-# only 1 node
-new_list2.insert_at_head("Loner")
-new_list2.print() # Loner -->  
-new_list2.remove_by_value("Loner")
-new_list2.print() # Linked list is empty
+# # only 1 node
+# new_list2.insert_at_head("Loner")
+# new_list2.print() # Loner -->  
+# new_list2.remove_by_value("Loner")
+# new_list2.print() # Linked list is empty
 
-new_list.remove_by_value("added AFTER")
-new_list.print() # 0 --> New ONE --> 1 --> 2 -->
+# new_list.remove_by_value("added AFTER")
+# new_list.print() # 0 --> New ONE --> 1 --> 2 -->
 
-new_list.remove_by_index(1)
-new_list.print() # 0 --> 1 --> 2 -->
+# new_list.remove_by_index(1)
+# new_list.print() # 0 --> 1 --> 2 -->
 
-# new_list.remove_by_index(0)
-# new_list.print() # 1 --> 2 --> 
+# # new_list.remove_by_index(0)
+# # new_list.print() # 1 --> 2 --> 
 
-new_list.insert_before_value( 1, "Before")
-new_list.print() # 0 --> Before --> 1 --> 2 -->
+# new_list.insert_before_value( 1, "Before")
+# new_list.print() # 0 --> Before --> 1 --> 2 -->
 
-new_list.insert_before_value("Before", "pre-Before")
-new_list.print() # 0 --> pre-Before --> Before --> 1 --> 2 --> 
+# new_list.insert_before_value("Before", "pre-Before")
+# new_list.print() # 0 --> pre-Before --> Before --> 1 --> 2 --> 
 
-new_list.insert_before_value("Not here", "not inserted") # value Not here is not in linked list
+# new_list.insert_before_value("Not here", "not inserted") # value Not here is not in linked list
+
+
+loop_list = LinkedList()
+loop_list.insert_at_head('head')
+loop_list.insert_after_value('head', 'first')
+loop_list.insert_after_value('first', 'second')
+loop_list.insert_after_value('second', 'third')
+loop_list.print()
+loop_list.loop_to_value('second')
+# loop_list.print()
