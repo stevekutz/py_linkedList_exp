@@ -316,6 +316,26 @@ class LinkedList:
           print(f' FALSE - no loops found')
           return True
 
+     def remove_loop(self):
+          addr_set = set()
+
+          current = self.head
+          addr_set.add(current.value)
+
+          orig_head = self.head
+          after_head = orig_head.next
+
+          while current:
+
+               if current.next.value in addr_set:    
+                    current.next = None
+                    return
+               addr_set.add(current.next.value)
+
+               # increment to next node
+               current = current.next               
+
+
 # if __name__ == '__main__':
 #      new_list = LinkedList()
 #      new_list.insert_at_head("Orig First")
@@ -406,9 +426,13 @@ loop_list.insert_at_head('head')
 loop_list.insert_after_value('head', 'first')
 loop_list.insert_after_value('first', 'second')
 loop_list.insert_after_value('second', 'third')
+# loop_list.print()
+# loop_list.detect_loop()
+
+
+loop_list.loop_to_value('head')
+loop_list.detect_loop()
+
+loop_list.remove_loop()
+loop_list.detect_loop()
 loop_list.print()
-loop_list.detect_loop()
-
-
-loop_list.loop_to_value('second')
-loop_list.detect_loop()
