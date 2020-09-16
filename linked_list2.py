@@ -8,6 +8,7 @@ class LinkedList:
           self.head = None  # just a pointer to first element in list
 
      def print(self):
+          
           if self.head is None:
                print("Linked list is empty")
                return
@@ -273,13 +274,11 @@ class LinkedList:
      def loop_to_value(self, value):
           current = self.head
 
-          # iterate to find value address & last node
-          val_add = None
-
-          # # head loop to itself
-          # if current.value == value:
-          #      val_add = current.next
-
+          # iterate to find value address & last node          
+          if value == 'head':
+               val_add = current
+          else:     
+               val_add = None
 
           # iterate to find adddress of value & point tail to address
           while current.next:
@@ -290,11 +289,32 @@ class LinkedList:
                current = current.next     
                # find location of tail
            
-          # current should be point to tail now
+          # current now at tail , set to next pointer to loop value
           current.next = val_add
 
+     def detect_loop(self):
+          addr_set = set()  # create empty set to store address
 
+          ll_str = ''
 
+          current = self.head
+
+          while current:
+               
+               if current in addr_set:
+                    ll_str += str(current.value)
+                    print(ll_str)
+                    print(f' TRUE - loop detected')
+                    return True
+
+               # otherwise add the address to set
+               addr_set.add(current)
+               ll_str += str(current.value) + ' ==> '
+               current = current.next     
+
+          print(ll_str)
+          print(f' FALSE - no loops found')
+          return True
 
 # if __name__ == '__main__':
 #      new_list = LinkedList()
@@ -387,5 +407,8 @@ loop_list.insert_after_value('head', 'first')
 loop_list.insert_after_value('first', 'second')
 loop_list.insert_after_value('second', 'third')
 loop_list.print()
+loop_list.detect_loop()
+
+
 loop_list.loop_to_value('second')
-# loop_list.print()
+loop_list.detect_loop()
