@@ -335,6 +335,17 @@ class LinkedList:
                # increment to next node
                current = current.next               
 
+     def reverse(self):
+          current = self.head
+          prev_add = None
+
+          while current:
+               next_add = current.next
+               current.next = prev_add
+               prev_add = current
+               current = next_add
+
+          self.head = prev_add
 
 # if __name__ == '__main__':
 #      new_list = LinkedList()
@@ -431,8 +442,19 @@ loop_list.insert_after_value('second', 'third')
 
 
 loop_list.loop_to_value('head')
-loop_list.detect_loop()
+loop_list.detect_loop() 
+#  TRUE - loop detected
+# head ==> first ==> second ==> third ==>
 
 loop_list.remove_loop()
-loop_list.detect_loop()
-loop_list.print()
+loop_list.detect_loop() 
+# FALSE - no loops found
+
+loop_list.print()  # head --> first --> second --> third --> 
+
+loop_list.reverse()
+loop_list.print()   # third --> second --> first --> head -->
+
+loop_list.reverse()
+loop_list.print()  # head --> first --> second --> third -->
+  
