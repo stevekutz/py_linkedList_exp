@@ -226,11 +226,10 @@ class LinkedList:
                if current.next.value == value:
                     not_found = False
                     current.next = current.next.next
-                    break
-               current = current.next
+                    # break
+               else:
+                    current = current.next
 
-          if current.next.value == value:
-               print(f' LAST ONE')
 
           if not_found:               
                print(f' value {value} is not in linked list ')
@@ -499,65 +498,82 @@ class LinkedList:
 # new_list.insert_before_value("Not here", "not inserted") # value Not here is not in linked list
 
 
-loop_list = LinkedList()
-loop_list.insert_at_head('first')
-loop_list.insert_after_value('first', 'second')
-loop_list.insert_after_value('second', 'third')
-loop_list.insert_after_value('third', 'fourth')
-loop_list.print()
-# loop_list.detect_loop()
-# # first ==> second ==> third ==> fourth ==> 
-# #  FALSE - no loops found
+# loop_list = LinkedList()
+# loop_list.insert_at_head('first')
+# loop_list.insert_after_value('first', 'dup')
 
-# loop_list.loop_to_value('second')
-# loop_list.detect_loop() 
-# # first ==> second ==> third ==> fourth ==> second
-# #  TRUE - loop detected at Node >> second
-
-# loop_list.remove_loop()
-# loop_list.detect_loop() 
-# # first ==> second ==> third ==> fourth ==> 
-# #  FALSE - no loops found
-
-# loop_list.print()  # head --> first --> second --> third --> 
-
-# loop_list.reverse()
-# loop_list.print()   # fourth --> third --> second --> first -->
-
-
-# print(f'\n')
-# loop_list.reverse()
-# loop_list.print()  # first --> second --> third --> fourth --> ->
-
-
-# loop_list.remove_nth_from_end(1)  # first --> second --> third -->
+# loop_list.insert_after_value('first', 'second')
+# loop_list.insert_after_value('second', 'third')
+# loop_list.insert_after_value('third', 'fourth')
 # loop_list.print()
+# # loop_list.detect_loop()
+# # # first ==> second ==> third ==> fourth ==> 
+# # #  FALSE - no loops found
+
+# # loop_list.loop_to_value('second')
+# # loop_list.detect_loop() 
+# # # first ==> second ==> third ==> fourth ==> second
+# # #  TRUE - loop detected at Node >> second
+
+# # loop_list.remove_loop()
+# # loop_list.detect_loop() 
+# # # first ==> second ==> third ==> fourth ==> 
+# # #  FALSE - no loops found
+
+# # loop_list.print()  # head --> first --> second --> third --> 
+
+# # loop_list.reverse()
+# # loop_list.print()   # fourth --> third --> second --> first -->
 
 
-# loop_list.remove_nth_from_end(2)  # first --> second --> fourth --> 
-# loop_list.print()
+# # print(f'\n')
+# # loop_list.reverse()
+# # loop_list.print()  # first --> second --> third --> fourth --> ->
 
-# loop_list.remove_nth_from_end(3)  # 
-# loop_list.print()    # first --> third --> fourth --> 
 
-# loop_list.print()
-# loop_list.remove_nth_from_end(4)  
-# loop_list.print()    # second --> third --> fourth -->
+# # loop_list.remove_nth_from_end(1)  # first --> second --> third -->
+# # loop_list.print()
 
-# loop_list.remove_by_value2('first')
-# loop_list.print()  # second --> third --> fourth --> 
 
-# loop_list.remove_by_value('fourth')
-# loop_list.print()
+# # loop_list.remove_nth_from_end(2)  # first --> second --> fourth --> 
+# # loop_list.print()
 
-loop_list.insert_before_value('first', 'dup')
-loop_list.insert_before_value('third', 'dup')
+# # loop_list.remove_nth_from_end(3)  # 
+# # loop_list.print()    # first --> third --> fourth --> 
+
+# # loop_list.print()
+# # loop_list.remove_nth_from_end(4)  
+# # loop_list.print()    # second --> third --> fourth -->
+
+# # loop_list.remove_by_value2('first')
+# # loop_list.print()  # second --> third --> fourth --> 
+
+# # loop_list.remove_by_value('fourth')
+# # loop_list.print()
+
+# loop_list.insert_before_value('first', 'dup')
+# loop_list.insert_before_value('third', 'dup')
 # loop_list.insert_before_value('third', 'dup')
 # loop_list.insert_before_value('fourth', 'dup')
 # loop_list.insert_after_value('fourth', 'dup')
-loop_list.print()
-# # # first --> second --> dup --> dup --> third --> dup --> fourth --> dup --> 
-# # loop_list.remove_duplicates()
-# # loop_list.print()
+# loop_list.print()
+# # # # first --> second --> dup --> dup --> third --> dup --> fourth --> dup --> 
+# # # loop_list.remove_duplicates()
+# # # loop_list.print()
 # loop_list.remove_by_value('dup')
 # loop_list.print()
+# # loop_list.remove_by_value('dup')
+# # loop_list.print()
+
+t_list = LinkedList()
+t_list.insert_at_head('first')
+t_list.insert_at_head('dup')
+t_list.insert_at_head('dup')
+t_list.insert_after_value('dup', 'spacer')
+t_list.insert_after_value('spacer', 'more')
+t_list.insert_at_tail('dup')
+t_list.insert_at_tail('dup')
+t_list.insert_at_tail('last')
+t_list.print()
+t_list.remove_by_value('dup')
+t_list.print()
