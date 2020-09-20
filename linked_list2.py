@@ -187,7 +187,7 @@ class LinkedList:
      def insert_before_value(self, value, new_value):
           current = self.head
           count = 0
-
+          value_exists = False
                
           if count == 0 and current.value == value:
                new_node = Node(new_value)
@@ -197,6 +197,7 @@ class LinkedList:
 
           while current.next:
                if current.next.value == value:
+                    value_exists = True
                     new_node = Node(new_value)
                     orig_current_next = current.next  # placeholder for pointer to rest of list
                     current.next = new_node
@@ -204,18 +205,21 @@ class LinkedList:
                     break
                current = current.next  
 
-          print(f' value {value} is not in linked list')          
+          if not value_exists:
+               print(f' value {value} is not in linked list')          
 
 
                          
      def remove_by_value(self, value):
+          # Removes ALL occurrence of value found
+          
           current = self.head
           not_found = True     
 
           # Case 1: location is head
           if current.value == value:
                self.head = current.next # reset head to next node
-               return 
+               # return 
 
           # Case 2: location is somewhere in list
           while current.next:
@@ -224,6 +228,9 @@ class LinkedList:
                     current.next = current.next.next
                     break
                current = current.next
+
+          if current.next.value == value:
+               print(f' LAST ONE')
 
           if not_found:               
                print(f' value {value} is not in linked list ')
@@ -236,7 +243,7 @@ class LinkedList:
           # Case 1 node is head
           if current.value == value:
                self.head = current.next # reset head to next node >> None
-               return 
+               # return 
 
           # Case 2 node is inside list
           prev_node = current
@@ -540,15 +547,17 @@ loop_list.print()
 # loop_list.remove_by_value2('first')
 # loop_list.print()  # second --> third --> fourth --> 
 
-# loop_list.remove_by_value('second')
+# loop_list.remove_by_value('fourth')
 # loop_list.print()
 
-# loop_list.insert_before_value('first', 'dup')
+loop_list.insert_before_value('first', 'dup')
+loop_list.insert_before_value('third', 'dup')
 # loop_list.insert_before_value('third', 'dup')
-# # loop_list.insert_before_value('third', 'dup')
 # loop_list.insert_before_value('fourth', 'dup')
-# # loop_list.insert_after_value('fourth', 'dup')
-# loop_list.print()
-# # first --> second --> dup --> dup --> third --> dup --> fourth --> dup --> 
-# loop_list.remove_duplicates()
+# loop_list.insert_after_value('fourth', 'dup')
+loop_list.print()
+# # # first --> second --> dup --> dup --> third --> dup --> fourth --> dup --> 
+# # loop_list.remove_duplicates()
+# # loop_list.print()
+# loop_list.remove_by_value('dup')
 # loop_list.print()
