@@ -240,8 +240,9 @@ class LinkedList:
 
           while prev_node:
                if delete_target.value == value:
-                    prev_node.next = target_node.next
-                    return
+                    prev_node.next = delete_target.next
+                    # return
+                    break
 
                prev_node = current
                delete_target = current.next          
@@ -304,7 +305,7 @@ class LinkedList:
                if current in addr_set:
                     ll_str += str(current.value)
                     print(ll_str)
-                    print(f' TRUE - loop detected')
+                    print(f' TRUE - loop detected at Node >> {current.value}')
                     return True
 
                # otherwise add the address to set
@@ -314,7 +315,7 @@ class LinkedList:
 
           print(ll_str)
           print(f' FALSE - no loops found')
-          return True
+          return False
 
      def remove_loop(self):
           addr_set = set()
@@ -346,6 +347,39 @@ class LinkedList:
                current = next_add
 
           self.head = prev_add
+
+     def remove_nth_from_end(self, n):
+
+          # NOT DONE
+
+          length = 1
+          current = self.head
+          point_del = self.head
+          save_head = self.head
+
+
+          while current.next:
+               length += 1
+               current = current.next   
+
+               if length > n + 1:
+                    point_del = point_del.next  
+          # when we exit loop, point_del should be at node we want to remove
+
+          # nth is beyond length, return orig linked list
+          if n > length:
+               return save_head
+
+          # nth from end is first node in link list
+          if length == n:
+               self.head = self.head.next # simply reset head to next element
+               return 
+
+          # nth from end is at point_del.next, set pointer around it
+          else:
+               point_del.next = point_del.next.next  
+               return self.head
+
 
 # if __name__ == '__main__':
 #      new_list = LinkedList()
@@ -433,28 +467,52 @@ class LinkedList:
 
 
 loop_list = LinkedList()
-loop_list.insert_at_head('head')
-loop_list.insert_after_value('head', 'first')
+loop_list.insert_at_head('first')
 loop_list.insert_after_value('first', 'second')
 loop_list.insert_after_value('second', 'third')
-# loop_list.print()
+loop_list.insert_after_value('third', 'fourth')
+loop_list.print()
 # loop_list.detect_loop()
+# # first ==> second ==> third ==> fourth ==> 
+# #  FALSE - no loops found
+
+# loop_list.loop_to_value('second')
+# loop_list.detect_loop() 
+# # first ==> second ==> third ==> fourth ==> second
+# #  TRUE - loop detected at Node >> second
+
+# loop_list.remove_loop()
+# loop_list.detect_loop() 
+# # first ==> second ==> third ==> fourth ==> 
+# #  FALSE - no loops found
+
+# loop_list.print()  # head --> first --> second --> third --> 
+
+# loop_list.reverse()
+# loop_list.print()   # fourth --> third --> second --> first -->
 
 
-loop_list.loop_to_value('head')
-loop_list.detect_loop() 
-#  TRUE - loop detected
-# head ==> first ==> second ==> third ==>
+# print(f'\n')
+# loop_list.reverse()
+# loop_list.print()  # first --> second --> third --> fourth --> ->
 
-loop_list.remove_loop()
-loop_list.detect_loop() 
-# FALSE - no loops found
 
-loop_list.print()  # head --> first --> second --> third --> 
+# loop_list.remove_nth_from_end(1)  # first --> second --> third -->
+# loop_list.print()
 
-loop_list.reverse()
-loop_list.print()   # third --> second --> first --> head -->
 
-loop_list.reverse()
-loop_list.print()  # head --> first --> second --> third -->
-  
+# loop_list.remove_nth_from_end(2)  # first --> second --> fourth --> 
+# loop_list.print()
+
+# loop_list.remove_nth_from_end(3)  # 
+# loop_list.print()    # first --> third --> fourth --> 
+
+# loop_list.print()
+# loop_list.remove_nth_from_end(4)  
+# loop_list.print()    # second --> third --> fourth -->
+
+# loop_list.remove_by_value2('first')
+# loop_list.print()  # second --> third --> fourth --> 
+
+loop_list.remove_by_value2('not here')
+loop_list.print()
