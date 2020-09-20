@@ -243,7 +243,7 @@ class LinkedList:
           delete_target = current.next
 
           while prev_node:
-               if delete_target and delete_target.value == value:
+               if delete_target.value == value:
                     value_found = True
                     prev_node.next = delete_target.next
                     break
@@ -276,7 +276,6 @@ class LinkedList:
                     current.next = current.next.next   
 
                current = current.next     
-
 
 
      def loop_to_value(self, value):
@@ -360,9 +359,8 @@ class LinkedList:
           # NOT DONE
 
           length = 1
-          current = self.head
-          point_del = self.head
-          save_head = self.head
+          current = point_del = self.head
+          
 
 
           while current.next:
@@ -375,7 +373,7 @@ class LinkedList:
 
           # nth is beyond length, return orig linked list
           if n > length:
-               return save_head
+               return self.head
 
           # nth from end is first node in link list
           if length == n:
@@ -386,6 +384,27 @@ class LinkedList:
           else:
                point_del.next = point_del.next.next  
                return self.head
+
+     def remove_duplicates(self):
+          current = self.head
+          dup_pointer = self.head    # pointer to loop through rest of list
+
+          # start pointers at same node, increment dup_pointer until end
+          #  --   if dup found, set pointer around it   
+          # THEN, set both pointers to next element and repeat  
+
+          while current:
+               while dup_pointer.next:
+                    if current.value == dup_pointer.next.value:
+                         dup_pointer.next = dup_pointer.next.next  
+                    else:
+                         dup_pointer = dup_pointer.next
+               # increment BOTH pointers and continue
+               current = dup_pointer = current.next
+               
+               # NO !!!   this makes dup_pointer => current.next.next
+               # current = current.next  
+               # dup_pointer = current.next     ##            
 
 
 # if __name__ == '__main__':
@@ -521,5 +540,15 @@ loop_list.print()
 # loop_list.remove_by_value2('first')
 # loop_list.print()  # second --> third --> fourth --> 
 
-loop_list.remove_by_value(2)
-loop_list.print()
+# loop_list.remove_by_value('second')
+# loop_list.print()
+
+# loop_list.insert_before_value('first', 'dup')
+# loop_list.insert_before_value('third', 'dup')
+# # loop_list.insert_before_value('third', 'dup')
+# loop_list.insert_before_value('fourth', 'dup')
+# # loop_list.insert_after_value('fourth', 'dup')
+# loop_list.print()
+# # first --> second --> dup --> dup --> third --> dup --> fourth --> dup --> 
+# loop_list.remove_duplicates()
+# loop_list.print()
