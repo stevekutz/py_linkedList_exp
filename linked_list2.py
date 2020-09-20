@@ -210,6 +210,7 @@ class LinkedList:
                          
      def remove_by_value(self, value):
           current = self.head
+          not_found = True     
 
           # Case 1: location is head
           if current.value == value:
@@ -219,15 +220,18 @@ class LinkedList:
           # Case 2: location is somewhere in list
           while current.next:
                if current.next.value == value:
+                    not_found = False
                     current.next = current.next.next
                     break
                current = current.next
-                         
-          print(f' value {value} is not in linked list ')
+
+          if not_found:               
+               print(f' value {value} is not in linked list ')
 
 
      def remove_by_value2(self, value):
           current = self.head
+          value_found = False
 
           # Case 1 node is head
           if current.value == value:
@@ -239,15 +243,18 @@ class LinkedList:
           delete_target = current.next
 
           while prev_node:
-               if delete_target.value == value:
+               if delete_target and delete_target.value == value:
+                    value_found = True
                     prev_node.next = delete_target.next
-                    # return
                     break
 
-               prev_node = current
-               delete_target = current.next          
-          
-          print(f' value {value} does not exist in linked list')
+               prev_node = prev_node.next
+               if current.next:
+                    current = current.next
+                    delete_target = current.next          
+               
+          if not value_found:
+               print(f' value {value} does not exist in linked list')
 
 
      def remove_by_index(self, index):
@@ -514,5 +521,5 @@ loop_list.print()
 # loop_list.remove_by_value2('first')
 # loop_list.print()  # second --> third --> fourth --> 
 
-loop_list.remove_by_value2('not here')
+loop_list.remove_by_value(2)
 loop_list.print()
