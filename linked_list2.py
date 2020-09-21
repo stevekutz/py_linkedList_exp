@@ -422,6 +422,41 @@ class LinkedList:
 
           return total
 
+     def move_last_to_front(self):
+          current = seclast_pointer = self.head
+
+          # check if empty list OR single node
+          # if current or current.next:   # empty list ERROR >> AttributeError: 'NoneType' object has no attribute 'next'
+          
+          if current  == None:
+               print(f' empty list, nothing to move')
+               return self.head
+          elif current.next == None:
+               print(f' only 1 Node, no last Node to move')
+               # return self.head     
+
+
+          while current and current.next:
+               seclast_pointer = current
+               current = current.next
+
+          print(f' current is {current.value}')    # points to last
+          
+          if current.next != None:
+               print(f' seclast_pointer is {seclast_pointer.value}') # points to second last
+
+          # have seclast_pointer.next point to None
+          seclast_pointer.next = None
+
+          # set current.next to point to orig head
+          current.next = self.head
+
+          # set new head to current(last)
+          self.head = current
+
+
+
+
 # if __name__ == '__main__':
 #      new_list = LinkedList()
 #      new_list.insert_at_head("Orig First")
@@ -590,13 +625,24 @@ class LinkedList:
 # t_list.print()
 # # spacer --> more --> first --> last --> 
 
-num_list = LinkedList()
-num_list.insert_at_tail(10)
-num_list.insert_at_tail(20)
-num_list.insert_at_tail(30)
-num_list.insert_at_tail(40)
-num_list.insert_at_tail(50)
-num_list.print()
+# num_list = LinkedList()
+# num_list.insert_at_tail(10)
+# num_list.insert_at_tail(20)
+# num_list.insert_at_tail(30)
+# num_list.insert_at_tail(40)
+# num_list.insert_at_tail(50)
+# num_list.print()
 # 10 --> 20 --> 30 --> 40 --> 50 --> 
 
-print(num_list.sum_total())
+# print(num_list.sum_total())
+
+m_list = LinkedList()
+# m_list.move_last_to_front()
+m_list.insert_at_head(1)
+m_list.insert_after_value(1, 2)
+m_list.insert_after_value(2, 3)
+# m_list.print()
+
+m_list.move_last_to_front()
+m_list.print()
+
