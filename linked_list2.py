@@ -362,10 +362,10 @@ class LinkedList:
 
      def remove_nth_from_end(self, n):
 
-          # NOT DONE
-
           length = 1
-          current = point_del = self.head
+          # current = point_del = self.head
+          current = self.head
+          point_del = self.head
           
 
 
@@ -423,7 +423,8 @@ class LinkedList:
           return total
 
      def move_last_to_front(self):
-          current = seclast_pointer = self.head
+          current = self.head
+          seclast_pointer = self.head
 
           # check if empty list OR single node
           # if current or current.next:   # empty list ERROR >> AttributeError: 'NoneType' object has no attribute 'next'
@@ -448,12 +449,108 @@ class LinkedList:
           # have seclast_pointer.next point to None
           seclast_pointer.next = None
 
-          # set current.next to point to orig head
+          # set new head to current(last)
           current.next = self.head
 
-          # set new head to current(last)
+          # set current.next to point to orig head
           self.head = current
 
+
+
+     def move_last_to_front2(self):
+          current = self.head
+          sec_last =self.head
+
+          if current == None:
+               print(f' empty linked list')
+               return
+          if current.next == None:
+               print(f' Only 1 node, can move anyting')
+
+          # point current to next node
+          current = current.next
+
+          while sec_last and current.next:
+               current = current.next  
+               sec_last = sec_last.next   
+
+          # should be point last value
+          print(f' last value is {current.value}') 
+          print(f' sec_last value is {sec_last.value}')   
+
+          # set sec_last to point to None
+          sec_last.next = None
+
+          # set last to point to rest of list from head
+          current.next = self.head 
+
+          # set head to current(last 
+          self.head = current
+
+
+
+
+
+
+
+
+     def move_first_to_end(self):
+          current = self.head
+          first_pointer = self.head
+
+          # verify if empty list
+          if current == None:
+               print(f' empty list')
+               return self.head
+          elif current.next == None:
+               print(f' list has only 1 node, nothing to move') 
+               return self.head  
+  
+          # find end
+          while current.next:
+               current = current.next
+          # current will now point to last     
+
+          # point original head to the next node
+          # self.head = first_pointer.next
+          self.head = self.head.next
+
+          # set last node to point to first_pointer
+          current.next = first_pointer
+
+          # set first node to point to None since it is now last
+          first_pointer.next = None
+
+          
+
+     def move_first_to_end2(self):
+          first = self.head
+          current = self. head
+
+
+          if current == None:
+               print(f' No nodes, empty list')
+               return self.head
+          elif current.next == None:
+               print(f' Only 1 node in list, nothing to move')
+               return self.head
+
+          while current.next:
+               current = current.next     
+
+          print(f' current should now be last node {current.value}')
+
+          # MUST  adjust head pointer first
+          # set head to point to next node
+          self.head = self.head.next
+
+
+          #############   order of these steps does not matter
+          # set first node to point to None
+          first.next = None
+
+          # set last pointer to point to first node
+          current.next = first
 
 
 
@@ -575,8 +672,8 @@ class LinkedList:
 # # loop_list.print()  # first --> second --> third --> fourth --> ->
 
 
-# # loop_list.remove_nth_from_end(1)  # first --> second --> third -->
-# # loop_list.print()
+# loop_list.remove_nth_from_end(1)  # first --> second --> third -->
+# loop_list.print()
 
 
 # # loop_list.remove_nth_from_end(2)  # first --> second --> fourth --> 
@@ -641,8 +738,13 @@ m_list = LinkedList()
 m_list.insert_at_head(1)
 m_list.insert_after_value(1, 2)
 m_list.insert_after_value(2, 3)
-# m_list.print()
-
-m_list.move_last_to_front()
 m_list.print()
+
+m_list.move_first_to_end2()
+m_list.print()
+
+# m_list.move_last_to_front()
+
+# # m_list.move_first_to_end()
+# m_list.print()
 
