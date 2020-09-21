@@ -412,6 +412,15 @@ class LinkedList:
                # current = current.next  
                # dup_pointer = current.next     ##            
 
+     def sum_total(self):
+          current = self.head
+          total = 0
+
+          while  current:
+               total += current.value
+               current = current.next
+
+          return total
 
 # if __name__ == '__main__':
 #      new_list = LinkedList()
@@ -565,15 +574,29 @@ class LinkedList:
 # # loop_list.remove_by_value('dup')
 # # loop_list.print()
 
-t_list = LinkedList()
-t_list.insert_at_head('first')
-t_list.insert_at_head('dup')
-t_list.insert_at_head('dup')
-t_list.insert_after_value('dup', 'spacer')
-t_list.insert_after_value('spacer', 'more')
-t_list.insert_at_tail('dup')
-t_list.insert_at_tail('dup')
-t_list.insert_at_tail('last')
-t_list.print()
-t_list.remove_by_value('dup')
-t_list.print()
+# t_list = LinkedList()
+# t_list.insert_at_head('first')
+# t_list.insert_at_head('dup')
+# t_list.insert_at_head('dup')
+# t_list.insert_after_value('dup', 'spacer')
+# t_list.insert_after_value('spacer', 'more')
+# t_list.insert_at_tail('dup')
+# t_list.insert_at_tail('dup')
+# t_list.insert_at_tail('last')
+# t_list.insert_at_tail('dup')
+# t_list.print()
+# # dup --> spacer --> more --> dup --> first --> dup --> dup --> last --> dup --> 
+# t_list.remove_by_value('dup')
+# t_list.print()
+# # spacer --> more --> first --> last --> 
+
+num_list = LinkedList()
+num_list.insert_at_tail(10)
+num_list.insert_at_tail(20)
+num_list.insert_at_tail(30)
+num_list.insert_at_tail(40)
+num_list.insert_at_tail(50)
+num_list.print()
+# 10 --> 20 --> 30 --> 40 --> 50 --> 
+
+print(num_list.sum_total())
