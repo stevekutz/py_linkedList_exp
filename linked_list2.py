@@ -422,6 +422,30 @@ class LinkedList:
 
           return total
 
+
+     def sum_odd(self):
+          current = self.head
+          odd_total = 0
+
+          while current:
+               if current.value % 2 != 0:
+                    odd_total += current.value
+               current = current.next 
+
+          return odd_total         
+
+     def sum_even(self):
+          current = self.head
+          odd_total = 0
+
+          while current:
+               if current.value % 2 == 0:
+                    odd_total += current.value
+               current = current.next 
+
+          return odd_total  
+
+
      def move_last_to_front(self):
           current = self.head
           seclast_pointer = self.head
@@ -813,17 +837,21 @@ l_1 = LinkedList()
 l_1.insert_at_head(4)
 l_1.insert_at_head(2)
 l_1.insert_at_head(1)
-l_1.print()
+l_1.print()    # 1 --> 2 --> 4 --> 
 
 l_2 = LinkedList()
 l_2.insert_at_head(4)
 l_2.insert_at_head(3)
 l_2.insert_at_head(1)
-l_2.print()
+l_2.print()   #  1 --> 3 --> 4 --> 
 
 sol = LinkedList()
 # sol.head = merge_sorted_rec(l_1.head, l_2.head)
-# sol.print()
+# sol.print() # 1 --> 1 --> 2 --> 3 --> 4 --> 4 -->
 
 sol.head = merge_sorted(l_1.head, l_2.head)
-sol.print()
+sol.print()   # 1 --> 1 --> 2 --> 3 --> 4 --> 4 -->
+
+
+print(sol.sum_odd())   # 5
+print(sol.sum_even())  # 10
