@@ -585,6 +585,36 @@ def merge_sorted_rec(l_1, l_2):
      return current
 
 
+def merge_sorted(l_1, l_2):
+     # create head to return solution
+     merged = Node()
+     temp_tail = merged
+     
+     while True:
+          # check if l1 empty
+          if l_1 == None:
+               temp_tail.next = l_2
+               break
+
+          # check if l2 empty
+          if l_2 == None:
+               temp_tail.next = l_1
+               break
+
+          # Compare values, smallest is appended to tail head is adjusted
+          if l_1.value <= l_2.value:
+               temp_tail.next = l_1
+               l_1 = l_1.next 
+          elif l_1.value > l_2.value:
+               temp_tail.next = l_2
+               l_2 = l_2.next
+
+          # increment tail
+          temp_tail = temp_tail.next     
+
+     # return point to new merged list
+     return merged.next
+
 # if __name__ == '__main__':
 #      new_list = LinkedList()
 #      new_list.insert_at_head("Orig First")
@@ -792,5 +822,8 @@ l_2.insert_at_head(1)
 l_2.print()
 
 sol = LinkedList()
-sol.head = merge_sorted_rec(l_1.head, l_2.head)
+# sol.head = merge_sorted_rec(l_1.head, l_2.head)
+# sol.print()
+
+sol.head = merge_sorted(l_1.head, l_2.head)
 sol.print()
