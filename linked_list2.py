@@ -576,6 +576,29 @@ class LinkedList:
           # set last pointer to point to first node
           current.next = first
 
+     def sort_asc(self):
+          current = self.head
+          index = None
+
+          if current == None:
+               return
+          else:
+               while current:
+                    index = current.next 
+
+                    while index:
+                         if current.value > index.value:
+                              temp = current.value
+                              current.value = index.value
+                              index.value = temp
+
+                         index = index.next 
+
+                    current = current.next          
+
+
+
+
 
 
 ##########################################################################
@@ -855,3 +878,14 @@ sol.print()   # 1 --> 1 --> 2 --> 3 --> 4 --> 4 -->
 
 print(sol.sum_odd())   # 5
 print(sol.sum_even())  # 10
+
+l_3 = LinkedList()
+l_3.insert_at_head(2)
+l_3.insert_at_head(5)
+l_3.insert_at_head(7)
+l_3.insert_at_head(0)
+l_3.insert_at_head(5)
+l_3.insert_at_head(6)
+l_3.print()    # 6 --> 5 --> 0 --> 7 --> 5 --> 2 -->
+l_3.sort_asc()
+l_3.print()    # 0 --> 2 --> 5 --> 5 --> 6 --> 7 -->
