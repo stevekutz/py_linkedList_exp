@@ -554,6 +554,37 @@ class LinkedList:
 
 
 
+##########################################################################
+#              Outside of LinkedList class
+##########################################################################
+
+
+def merge_sorted_rec(l_1, l_2):
+     # l_1 = l_1.head
+     # l_2 = l_2.head
+     
+     # check if l1 empty
+     if l_1 == None:
+          return l_2
+     # check if l2 empty
+     if l_2 == None:
+          return l_1
+
+     current = None
+
+     if l_1.value <= l_2.value:  
+          current = l_1
+
+          current.next = merge_sorted_rec(l_1.next, l_2)
+
+     elif l_1.value > l_2.value:
+          current = l_2
+
+          current.next = merge_sorted_rec(l_1, l_2.next)    
+
+     return current
+
+
 # if __name__ == '__main__':
 #      new_list = LinkedList()
 #      new_list.insert_at_head("Orig First")
@@ -733,18 +764,33 @@ class LinkedList:
 
 # print(num_list.sum_total())
 
-m_list = LinkedList()
-# m_list.move_last_to_front()
-m_list.insert_at_head(1)
-m_list.insert_after_value(1, 2)
-m_list.insert_after_value(2, 3)
-m_list.print()
+# m_list = LinkedList()
+# # m_list.move_last_to_front()
+# m_list.insert_at_head(1)
+# m_list.insert_after_value(1, 2)
+# m_list.insert_after_value(2, 3)
+# m_list.print()
 
-m_list.move_first_to_end2()
-m_list.print()
+# m_list.move_first_to_end2()
+# m_list.print()
 
 # m_list.move_last_to_front()
 
 # # m_list.move_first_to_end()
 # m_list.print()
 
+l_1 = LinkedList()
+l_1.insert_at_head(4)
+l_1.insert_at_head(2)
+l_1.insert_at_head(1)
+l_1.print()
+
+l_2 = LinkedList()
+l_2.insert_at_head(4)
+l_2.insert_at_head(3)
+l_2.insert_at_head(1)
+l_2.print()
+
+sol = LinkedList()
+sol.head = merge_sorted_rec(l_1.head, l_2.head)
+sol.print()
