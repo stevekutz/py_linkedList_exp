@@ -625,9 +625,35 @@ class LinkedList:
                     current = current.next          
 
 
+     def move_odd_to_front(self):  # 1 --> 2 --> 4 --> 1 --> 3 --> 4 --
+          if self.head == None:
+               return None
+          
+          current = self.head
+          odd_pointer = self.head
+          even_pointer = odd_pointer.next
+          even_head = even_pointer
 
+          
+          while even_pointer != None and even_pointer.next != None:
+               odd_pointer.next = even_pointer.next
+               odd_pointer = odd_pointer.next
+               even_pointer.next = odd_pointer.next
+               even_pointer = even_pointer.next
 
+          odd_pointer.next = even_head
 
+          return self.head
+
+          # while odd_pointer:
+          #      if odd_pointer.value % 2 != 0: # check if odd
+          #           odd_pointer = odd_pointer.next
+          #      else:
+          #           even_pointer = odd_pointer
+          #           odd_pointer = odd_pointer.next
+
+          # odd_pointer.next = even_pointer
+          # return odd_pointer
 
 ##########################################################################
 #              Outside of LinkedList class  - goes inside Solution class
@@ -715,7 +741,7 @@ def sort_asc_2(linked_list):
      return linked_list
 
 
-def append_at_end(l_1, l_2):
+def append_at_end(l_1, l_2):               
      # save pointer to original head of l_1
      current = l_1
 
@@ -998,22 +1024,31 @@ def append_at_end(l_1, l_2):
 # # m_list.move_first_to_end()
 # m_list.print()
 
-l_1 = LinkedList()
-l_1.insert_at_head(4)
-l_1.insert_at_head(2)
-l_1.insert_at_head(1)
-l_1.print()    # 1 --> 2 --> 4 --> 
+# l_1 = LinkedList()
+# l_1.insert_at_head(4)
+# l_1.insert_at_head(2)
+# l_1.insert_at_head(1)
+# l_1.print()    # 1 --> 2 --> 4 --> 
 
-l_2 = LinkedList()
-l_2.insert_at_head(4)
-l_2.insert_at_head(3)
-l_2.insert_at_head(1)
-l_2.print()   #  1 --> 3 --> 4 --> 
+# l_2 = LinkedList()
+# l_2.insert_at_head(4)
+# l_2.insert_at_head(3)
+# l_2.insert_at_head(1)
+# l_2.print()   #  1 --> 3 --> 4 --> 
+
+# sol = LinkedList()
+# sol.head = append_at_end(l_1.head, l_2.head)
+# sol.print()  # 1 --> 2 --> 4 --> 1 --> 3 --> 4 --
 
 sol = LinkedList()
-sol.head = append_at_end(l_1.head, l_2.head)
-sol.print()  # 1 --> 2 --> 4 --> 1 --> 3 --> 4 --
+sol.insert_at_head(5)
+sol.insert_at_head(4)
+sol.insert_at_head(3)
+sol.insert_at_head(2)
+sol.insert_at_head(1)
 
+sol.move_odd_to_front()
+sol.print()
 
 # sol = LinkedList()
 # # sol.head = merge_sorted_rec(l_1.head, l_2.head)
