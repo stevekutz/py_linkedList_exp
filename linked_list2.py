@@ -715,6 +715,29 @@ def sort_asc_2(linked_list):
      return linked_list
 
 
+def append_at_end(l_1, l_2):
+     # save pointer to original head of l_1
+     current = l_1
+
+     if l_1 == None and l_2 == None:
+          return
+
+     if l_1 == None:
+          return l_2
+
+     if l_2 == None:
+          return l_1     
+
+     # loop to end of l_1
+     while l_1.next:
+          l_1 = l_1.next
+
+     # now attach to l_2
+     l_1.next = l_2
+
+     return current
+
+
 # def sort_asc_3(linked_list):
 #      # if not head or not head.next: 
 #      sol = Node()
@@ -975,17 +998,22 @@ def sort_asc_2(linked_list):
 # # m_list.move_first_to_end()
 # m_list.print()
 
-# l_1 = LinkedList()
-# l_1.insert_at_head(4)
-# l_1.insert_at_head(2)
-# l_1.insert_at_head(1)
-# l_1.print()    # 1 --> 2 --> 4 --> 
+l_1 = LinkedList()
+l_1.insert_at_head(4)
+l_1.insert_at_head(2)
+l_1.insert_at_head(1)
+l_1.print()    # 1 --> 2 --> 4 --> 
 
-# l_2 = LinkedList()
-# l_2.insert_at_head(4)
-# l_2.insert_at_head(3)
-# l_2.insert_at_head(1)
-# l_2.print()   #  1 --> 3 --> 4 --> 
+l_2 = LinkedList()
+l_2.insert_at_head(4)
+l_2.insert_at_head(3)
+l_2.insert_at_head(1)
+l_2.print()   #  1 --> 3 --> 4 --> 
+
+sol = LinkedList()
+sol.head = append_at_end(l_1.head, l_2.head)
+sol.print()  # 1 --> 2 --> 4 --> 1 --> 3 --> 4 --
+
 
 # sol = LinkedList()
 # # sol.head = merge_sorted_rec(l_1.head, l_2.head)
@@ -1019,15 +1047,15 @@ def sort_asc_2(linked_list):
 # l_3.remove_duplicates()
 # l_3.print()
 
-l_a = LinkedList()
-l_a.insert_at_head(3)
-l_a.insert_at_head(1)
-l_a.insert_at_head(5)
-l_a.insert_at_head(7)
-l_a.insert_at_head(7)
-l_a.insert_at_head(79)
-l_a.print()  # 79 --> 7 --> 7 --> 5 --> 1 --> 3 --> 
+# l_a = LinkedList()
+# l_a.insert_at_head(3)
+# l_a.insert_at_head(1)
+# l_a.insert_at_head(5)
+# l_a.insert_at_head(7)
+# l_a.insert_at_head(7)
+# l_a.insert_at_head(79)
+# l_a.print()  # 79 --> 7 --> 7 --> 5 --> 1 --> 3 --> 
 
-sol = LinkedList()
-sol.head = sort_asc_2(l_a.head)
-sol.print()  # 1 --> 3 --> 5 --> 7 --> 7 --> 79 -->
+# sol = LinkedList()
+# sol.head = sort_asc_2(l_a.head)
+# sol.print()  # 1 --> 3 --> 5 --> 7 --> 7 --> 79 -->
