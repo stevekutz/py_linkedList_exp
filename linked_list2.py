@@ -446,6 +446,34 @@ class LinkedList:
           return odd_total  
 
 
+     def sum_palindromes(self):
+          
+          def is_palindrome(val):
+               d = 0; s = 0;  
+               temp = val; 
+               while (val > 0) :  
+               
+                    d = val % 10;  # find remainder
+                    s = s * 10 + d;   
+                    val = val // 10;  
+               
+                    print(f' d: {d}   s: {s}  val {val} ')
+               # If n is equal to its reverse,  
+               # it is a palindrome  
+               print(f' result: {s == temp} ')
+               return s == temp;
+          
+          current = self.head
+          sum_pal = 0
+
+          while current:
+               if is_palindrome(current.value):
+                    sum_pal += current.value
+               current = current.next
+
+          return sum_pal
+
+
      def move_last_to_front(self):
           current = self.head
           seclast_pointer = self.head
@@ -602,7 +630,7 @@ class LinkedList:
 
 
 ##########################################################################
-#              Outside of LinkedList class
+#              Outside of LinkedList class  - goes inside Solution class
 ##########################################################################
 
 
@@ -661,6 +689,97 @@ def merge_sorted(l_1, l_2):
 
      # return point to new merged list
      return merged.next
+
+
+def sort_asc_2(linked_list):
+     current = linked_list
+     index = None
+     sol = current
+
+     if current == None:
+          return
+     else:
+          while current:
+               index = current.next 
+
+               while index:
+                    if current.value > index.value:
+                         temp = current.value
+                         current.value = index.value
+                         index.value = temp
+
+                    index = index.next 
+               sol = current
+               current = current.next 
+
+     return linked_list
+
+
+# def sort_asc_3(linked_list):
+#      # if not head or not head.next: 
+#      sol = Node()
+#      linked_list = sol
+
+#      if linked_list == None:
+#           return
+     
+#      head = linked_list
+
+#      def getSize(head):
+#           # Simply count the length of linked list
+#           counter = 0
+#           while head:
+#                counter +=1
+#                head = head.next
+#           return counter
+     
+#      def split(head, size):
+#           # given the head & size, return the the start node of next chunk
+#           for i in range(size-1): 
+#                if not head: 
+#                     break 
+#                     head = head.next
+
+#           if not head: return None
+#           next_start, head.next = head.next, None  #disconnect
+          
+#           return next_start
+     
+#      def merge(l1, l2, dummy_start):
+#           # Given dummy_start, merge two lists, and return the tail of merged list
+#           curr = dummy_start
+#           while l1 and l2:
+#                if l1.val <= l2.val:
+#                     curr.next, l1 = l1, l1.next
+#                else:
+#                     curr.next, l2 = l2, l2.next
+#                     curr = curr.next
+          
+#           curr.next = l1 if l1 else l2
+#           while curr.next: curr = curr.next  # Find tail
+#           # the returned tail should be the "dummy_start" node of next chunk
+#           return curr  
+
+#           total_length = getSize(head)
+#           dummy = Node()
+#           dummy.next = dummy.head
+#           start, dummy_start, size = None, None, 1
+     
+#           while size < total_length:
+#                dummy_start = dummy
+#                start = dummy.next 
+#                while start:
+#                     left = start
+#                     right = split(left, size) # start from left, cut with size=size
+#                     start = split(right, size) # start from right, cut with size=size
+#                     dummy_start = merge(left, right, dummy_start)  # returned tail = next dummy_start 
+#                size *= 2
+#           return dummy.next     
+#           # return sol.next
+
+
+# def merge_unsorted(l_a, l_b):
+
 
 # if __name__ == '__main__':
 #      new_list = LinkedList()
@@ -856,36 +975,59 @@ def merge_sorted(l_1, l_2):
 # # m_list.move_first_to_end()
 # m_list.print()
 
-l_1 = LinkedList()
-l_1.insert_at_head(4)
-l_1.insert_at_head(2)
-l_1.insert_at_head(1)
-l_1.print()    # 1 --> 2 --> 4 --> 
+# l_1 = LinkedList()
+# l_1.insert_at_head(4)
+# l_1.insert_at_head(2)
+# l_1.insert_at_head(1)
+# l_1.print()    # 1 --> 2 --> 4 --> 
 
-l_2 = LinkedList()
-l_2.insert_at_head(4)
-l_2.insert_at_head(3)
-l_2.insert_at_head(1)
-l_2.print()   #  1 --> 3 --> 4 --> 
+# l_2 = LinkedList()
+# l_2.insert_at_head(4)
+# l_2.insert_at_head(3)
+# l_2.insert_at_head(1)
+# l_2.print()   #  1 --> 3 --> 4 --> 
+
+# sol = LinkedList()
+# # sol.head = merge_sorted_rec(l_1.head, l_2.head)
+# # sol.print() # 1 --> 1 --> 2 --> 3 --> 4 --> 4 -->
+
+# sol.head = merge_sorted(l_1.head, l_2.head)
+# sol.print()   # 1 --> 1 --> 2 --> 3 --> 4 --> 4 -->
+
+
+# print(sol.sum_odd())   # 5
+# print(sol.sum_even())  # 10
+
+# l_3 = LinkedList()
+# l_3.insert_at_head(2)
+# l_3.insert_at_head(5)
+# l_3.insert_at_head(7)
+# l_3.insert_at_head(0)
+# l_3.insert_at_head(5)
+# l_3.insert_at_head(6)
+# l_3.print()    # 6 --> 5 --> 0 --> 7 --> 5 --> 2 -->
+# l_3.sort_asc()
+# l_3.print()    # 0 --> 2 --> 5 --> 5 --> 6 --> 7 -->
+
+# l_p = LinkedList()
+# l_p.insert_at_head(88)
+# l_p.insert_at_head(14)
+# l_p.insert_at_head(313)
+# l_p.insert_at_head(2)
+# print(l_p.sum_palindromes())
+
+# l_3.remove_duplicates()
+# l_3.print()
+
+l_a = LinkedList()
+l_a.insert_at_head(3)
+l_a.insert_at_head(1)
+l_a.insert_at_head(5)
+l_a.insert_at_head(7)
+l_a.insert_at_head(7)
+l_a.insert_at_head(79)
+l_a.print()  # 79 --> 7 --> 7 --> 5 --> 1 --> 3 --> 
 
 sol = LinkedList()
-# sol.head = merge_sorted_rec(l_1.head, l_2.head)
-# sol.print() # 1 --> 1 --> 2 --> 3 --> 4 --> 4 -->
-
-sol.head = merge_sorted(l_1.head, l_2.head)
-sol.print()   # 1 --> 1 --> 2 --> 3 --> 4 --> 4 -->
-
-
-print(sol.sum_odd())   # 5
-print(sol.sum_even())  # 10
-
-l_3 = LinkedList()
-l_3.insert_at_head(2)
-l_3.insert_at_head(5)
-l_3.insert_at_head(7)
-l_3.insert_at_head(0)
-l_3.insert_at_head(5)
-l_3.insert_at_head(6)
-l_3.print()    # 6 --> 5 --> 0 --> 7 --> 5 --> 2 -->
-l_3.sort_asc()
-l_3.print()    # 0 --> 2 --> 5 --> 5 --> 6 --> 7 -->
+sol.head = sort_asc_2(l_a.head)
+sol.print()  # 1 --> 3 --> 5 --> 7 --> 7 --> 79 -->
