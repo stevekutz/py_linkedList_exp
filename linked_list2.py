@@ -683,11 +683,76 @@ class LinkedList:
           return orig
 
 
+     def move_odd_value_to_front_2(self):
+          if self.head == None:
+               return
+          orig = self.head
+
+
+          even_addr = []
+          odd_addr = []
+
+          new_even = self.head
+          new_odd = self.head
+          current = self.head
+          next_p = current.next 
+
+          while current:
+               if current.value % 2 == 0:
+                    even_addr.append(current)
+               else:
+                    odd_addr.append(current)
+               current = current.next          
+          
+
+          for item in even_addr:
+               print(f' item val is {item.value}')
+
+          for i in range(0, len(odd_addr) - 1):
+               new_odd = odd_addr[0]
+               if i != (len(odd_addr) - 1):
+                    odd_addr[i].next = odd_addr[i+1]
+               else:
+                    odd_addr[i].next = None
+
+          for i in range(0, len(even_addr) - 1):
+               new_even = even_addr[0]
+               if i != (len(even_addr) - 1):
+                    even_addr[i].next = even_addr[i+1]
+               else:
+                    even_addr[i].next = None
 
 
 
+          # even_addr[0].next = odd_addr[0]
+          # self.head = even_addr[0]
+          self.head = odd_addr[0]     
 
 
+          # print(f' at end, current value is {current}   {current.value}')
+          # current_even = self.head 
+          # current_odd =self.head  
+
+          # odd_p = self.head
+          # even_p= self.head
+
+
+          # while current_even and  current_even.next:
+          #           if current_even.value % 2 == 0 :
+          #                current_even = current_even.next     
+                    
+
+          # while current_odd:
+          #      while odd_p.next:
+          #           if current_odd.value % 2 == 0 :
+          #                odd_p.next = odd_p.next.next
+          #           else:
+          #                odd_p = odd_p.next
+
+          #      current_odd = odd_p = current_odd.next
+
+
+     
 
 
 ##########################################################################
@@ -1081,7 +1146,7 @@ l_5 = LinkedList()
 l_5.insert_list_at_tail([7,2,1,4])
 l_5.print()
 
-l_5.move_odd_value_to_front()
+l_5.move_odd_value_to_front_2()
 l_5.print()
 
 # l_5.insert_at_head(4)
