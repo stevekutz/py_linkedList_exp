@@ -692,36 +692,38 @@ class LinkedList:
           even_addr = []
           odd_addr = []
 
-          new_even = self.head
-          new_odd = self.head
-          current = self.head
-          next_p = current.next 
 
+          current = self.head
+
+          # move nodes to list based on even /odd values
           while current:
                if current.value % 2 == 0:
                     even_addr.append(current)
-               else:
+               elif current.value % 2 != 0:
                     odd_addr.append(current)
                current = current.next          
           
 
-          for item in even_addr:
-               print(f' item val is {item.value}')
+          # for item in even_addr:
+          #      print(f' EVEN item val is {item.value}')
 
+          # for item in odd_addr:
+          #      print(f' ODD item val is {item.value}')     
+
+          # reset next pointers for odd value nodes
           for i in range(0, len(odd_addr) - 1):
-               new_odd = odd_addr[0]
                if i != (len(odd_addr) - 1):
                     odd_addr[i].next = odd_addr[i+1]
-               else:
-                    odd_addr[i].next = None
+          
+          # set last odd to point to first even node
+          odd_addr[-1].next = even_addr[0]
+
 
           for i in range(0, len(even_addr) - 1):
-               new_even = even_addr[0]
                if i != (len(even_addr) - 1):
                     even_addr[i].next = even_addr[i+1]
-               else:
-                    even_addr[i].next = None
-
+          # set last even Node next to point to None
+          even_addr[-1].next = None
 
 
           # even_addr[0].next = odd_addr[0]
@@ -1143,7 +1145,7 @@ def append_at_end(l_1, l_2):
 
 
 l_5 = LinkedList()
-l_5.insert_list_at_tail([7,2,1,4])
+l_5.insert_list_at_tail([0,7,2,1,4,6,8,5,10, 11])
 l_5.print()
 
 l_5.move_odd_value_to_front_2()
