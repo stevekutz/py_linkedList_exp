@@ -726,36 +726,40 @@ class LinkedList:
           even_addr[-1].next = None
 
 
-          # even_addr[0].next = odd_addr[0]
-          # self.head = even_addr[0]
           self.head = odd_addr[0]     
 
+     def move_odd_value_to_front_3(self):
 
-          # print(f' at end, current value is {current}   {current.value}')
-          # current_even = self.head 
-          # current_odd =self.head  
+          current = self.head
+          odd_vals = []
+          even_vals = []
 
-          # odd_p = self.head
-          # even_p= self.head
+          def fix_next(list_val ,node_val):
+               cur_index = list_val.index(node_val)
+               print(f' current index is {cur_index} with node_val.value {node_val.value}')
+               if cur_index != 0:
+                    list_val[cur_index - 1].next = node_val     
 
+          while  current:
+               if current.value % 2 == 0:
+                    even_vals.append(current)
+                    fix_next(even_vals, current)
 
-          # while current_even and  current_even.next:
-          #           if current_even.value % 2 == 0 :
-          #                current_even = current_even.next     
-                    
+               else:
+                    odd_vals.append(current)
+                    fix_next(odd_vals, current)
 
-          # while current_odd:
-          #      while odd_p.next:
-          #           if current_odd.value % 2 == 0 :
-          #                odd_p.next = odd_p.next.next
-          #           else:
-          #                odd_p = odd_p.next
-
-          #      current_odd = odd_p = current_odd.next
-
-
+               current = current.next
      
+          odd_vals[-1].next = even_vals[0]
+          even_vals[-1].next = None
+          self.head = odd_vals[0]
 
+          # for item in even_vals:
+          #      print(f' item is {item.value}')
+
+          # for item in odd_vals:
+          #      print(f' item is {item.value}')
 
 ##########################################################################
 #              Outside of LinkedList class  - goes inside Solution class
@@ -1148,7 +1152,7 @@ l_5 = LinkedList()
 l_5.insert_list_at_tail([0,7,2,1,4,6,8,5,10, 11])
 l_5.print()
 
-l_5.move_odd_value_to_front_2()
+l_5.move_odd_value_to_front_3()
 l_5.print()
 
 # l_5.insert_at_head(4)
