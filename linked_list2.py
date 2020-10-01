@@ -14,7 +14,9 @@ class LinkedList:
                return
           itr = self.head  # init to head
           llstr = ''
-          while itr:
+
+          # PEP 8 recoomends using is/is not None instad of equality operators such as == None
+          while itr is not None:
                llstr += str(itr.value) + ' --> '
                itr = itr.next
           print(llstr)
@@ -22,7 +24,7 @@ class LinkedList:
      def get_length(self):
           count = 0
           itr = self.head # init to first mem address of ll
-          while itr: # while a pointer exists
+          while itr is not None: # while a pointer exists
                count +=1
                itr = itr.next # point to next node
 
@@ -30,7 +32,8 @@ class LinkedList:
 
      def insert_at_tail(self, value):
           #  check if list is empty
-          if self.head == None:
+
+          if self.head is None:
                # another way
                new_node = Node(value)
                new_node.next = None
@@ -42,7 +45,7 @@ class LinkedList:
           # if list NOT empty, iterate through until end     
           else:
                itr = self.head
-               while itr.next: # while it still has a value, not None
+               while itr.next is not None: # while it still has a value, not None
                     itr = itr.next
                # at end, next will = None
                itr.next = Node(value, None)     
@@ -84,7 +87,7 @@ class LinkedList:
           itr = self.head
           count = 0
 
-          while itr:
+          while itr is not None:
                prev_node = itr
                if count == index - 1:
                     # point .next to node after one to be deleted
@@ -108,7 +111,7 @@ class LinkedList:
           count = 0
           itr = self.head
 
-          while itr:
+          while itr is not None:
                prev_node = itr
                itr = itr.next
                count += 1
@@ -134,7 +137,7 @@ class LinkedList:
           count = 0
           itr = self.head
 
-          while itr:
+          while itr is not None:
                prev_node = itr
                itr = itr.next
                count += 1
@@ -147,7 +150,7 @@ class LinkedList:
          # you could use previous methods
          
           # if list is empty
-          if self.head == None:
+          if self.head is None:
                new_node = Node(value)
                self.head = new_node
                return
@@ -155,7 +158,7 @@ class LinkedList:
           # if list not empty, find value
           current = self.head
           
-          while current:
+          while current is not None:
                if current.value == value:
                     current.value = new_value
                     return
@@ -166,10 +169,10 @@ class LinkedList:
      def insert_after_value(self, value, new_value):
           current = self.head  # start 
 
-          while current:
+          while current is not None:
                if current.value == value:
                     # verify if there is next
-                    if current.next == None:
+                    if current.next is None:
                          new_node = Node(new_value)
                          current.next = new_node
                          return 
@@ -195,7 +198,7 @@ class LinkedList:
                self.head = new_node
                return
 
-          while current.next:
+          while current.next is not None:
                if current.next.value == value:
                     value_exists = True
                     new_node = Node(new_value)
@@ -222,7 +225,7 @@ class LinkedList:
                # return 
 
           # Case 2: location is somewhere in list
-          while current.next:
+          while current.next is not None:
                if current.next.value == value:
                     not_found = False
                     current.next = current.next.next
@@ -248,14 +251,14 @@ class LinkedList:
           prev_node = current
           delete_target = current.next
 
-          while prev_node:
+          while prev_node is not None:
                if delete_target.value == value:
                     value_found = True
                     prev_node.next = delete_target.next
                     break
 
                prev_node = prev_node.next
-               if current.next:
+               if current.next is not None:
                     current = current.next
                     delete_target = current.next          
                
@@ -270,7 +273,7 @@ class LinkedList:
                print(f' ERROR: index out of range')
 
           count = 0    
-          while current != None:
+          while current is not None:
                # if index is head
                if index == 0:
                     self.head = current.next 
@@ -294,7 +297,7 @@ class LinkedList:
                val_add = None
 
           # iterate to find adddress of value & point tail to address
-          while current.next:
+          while current.next is not None:
                if current.next.value == value:
                     val_add = current.next
 
@@ -312,7 +315,7 @@ class LinkedList:
 
           current = self.head
 
-          while current:
+          while current is not None:
                
                if current in addr_set:
                     ll_str += str(current.value)
@@ -338,7 +341,7 @@ class LinkedList:
           orig_head = self.head
           after_head = orig_head.next
 
-          while current:
+          while current is not None:
 
                if current.next.value in addr_set:    
                     current.next = None
@@ -352,7 +355,7 @@ class LinkedList:
           current = self.head
           prev_add = None
 
-          while current:
+          while current is not None:
                next_add = current.next
                current.next = prev_add
                prev_add = current
@@ -369,7 +372,7 @@ class LinkedList:
           
 
 
-          while current.next:
+          while current.next is not None:
                length += 1
                current = current.next   
 
@@ -399,7 +402,7 @@ class LinkedList:
           #  --   if dup found, set pointer around it   
           # THEN, set both pointers to next element and repeat  
 
-          while current:
+          while current is not None:
                while dup_pointer.next:
                     if current.value == dup_pointer.next.value:
                          dup_pointer.next = dup_pointer.next.next  
@@ -416,7 +419,7 @@ class LinkedList:
           current = self.head
           total = 0
 
-          while  current:
+          while  current is not None:
                total += current.value
                current = current.next
 
@@ -427,7 +430,7 @@ class LinkedList:
           current = self.head
           odd_total = 0
 
-          while current:
+          while current is not None:
                if current.value % 2 != 0:
                     odd_total += current.value
                current = current.next 
@@ -438,7 +441,7 @@ class LinkedList:
           current = self.head
           odd_total = 0
 
-          while current:
+          while current is not None:
                if current.value % 2 == 0:
                     odd_total += current.value
                current = current.next 
@@ -466,7 +469,7 @@ class LinkedList:
           current = self.head
           sum_pal = 0
 
-          while current:
+          while current is not None:
                if is_palindrome(current.value):
                     sum_pal += current.value
                current = current.next
@@ -481,7 +484,7 @@ class LinkedList:
           # check if empty list OR single node
           # if current or current.next:   # empty list ERROR >> AttributeError: 'NoneType' object has no attribute 'next'
           
-          if current  == None:
+          if current is None:
                print(f' empty list, nothing to move')
                return self.head
           elif current.next == None:
@@ -489,13 +492,13 @@ class LinkedList:
                # return self.head     
 
 
-          while current and current.next:
+          while current is not None and current.next is not None:
                seclast_pointer = current
                current = current.next
 
           print(f' current is {current.value}')    # points to last
           
-          if current.next != None:
+          if current.next is not None:
                print(f' seclast_pointer is {seclast_pointer.value}') # points to second last
 
           # have seclast_pointer.next point to None
@@ -513,16 +516,16 @@ class LinkedList:
           current = self.head
           sec_last =self.head
 
-          if current == None:
+          if current is None:
                print(f' empty linked list')
                return
-          if current.next == None:
+          if current.next is None:
                print(f' Only 1 node, can move anyting')
 
           # point current to next node
           current = current.next
 
-          while sec_last and current.next:
+          while sec_last is not None and current.next is not None:
                current = current.next  
                sec_last = sec_last.next   
 
@@ -551,15 +554,15 @@ class LinkedList:
           first_pointer = self.head
 
           # verify if empty list
-          if current == None:
+          if current is None:
                print(f' empty list')
                return self.head
-          elif current.next == None:
+          elif current.next is None:
                print(f' list has only 1 node, nothing to move') 
                return self.head  
   
           # find end
-          while current.next:
+          while current.next is not None:
                current = current.next
           # current will now point to last     
 
@@ -580,14 +583,14 @@ class LinkedList:
           current = self. head
 
 
-          if current == None:
+          if current is None:
                print(f' No nodes, empty list')
                return self.head
-          elif current.next == None:
+          elif current.next is None:
                print(f' Only 1 node in list, nothing to move')
                return self.head
 
-          while current.next:
+          while current.next is not None:
                current = current.next     
 
           print(f' current should now be last node {current.value}')
@@ -608,13 +611,13 @@ class LinkedList:
           current = self.head
           index = None
 
-          if current == None:
+          if current is None:
                return
           else:
-               while current:
+               while current is not None:
                     index = current.next 
 
-                    while index:
+                    while index is not None:
                          if current.value > index.value:
                               temp = current.value
                               current.value = index.value
@@ -635,7 +638,7 @@ class LinkedList:
           even_head = even_pointer
 
           
-          while even_pointer != None and even_pointer.next != None:
+          while even_pointer is not None and even_pointer.next is not None:
                odd_pointer.next = even_pointer.next
                odd_pointer = odd_pointer.next
                even_pointer.next = odd_pointer.next
@@ -670,7 +673,7 @@ class LinkedList:
 
           sol = LinkedList()
 
-          while current:
+          while current is not None:
                if current.value % 2 != 0:
                     odd.append(current.value)
                if current.value % 2 == 0:
@@ -696,7 +699,7 @@ class LinkedList:
           current = self.head
 
           # move nodes to list based on even /odd values
-          while current:
+          while current is not None:
                if current.value % 2 == 0:
                     even_addr.append(current)
                elif current.value % 2 != 0:
@@ -708,7 +711,7 @@ class LinkedList:
           #      print(f' EVEN item val is {item.value}')
 
           # for item in odd_addr:
-          #      print(f' ODD item val is {item.value}')     
+          #      print(f' ODD item val is {item.value}')     dps
 
           # reset next pointers for odd value nodes
           for i in range(0, len(odd_addr) - 1):
@@ -740,7 +743,7 @@ class LinkedList:
                if cur_index != 0:
                     list_val[cur_index - 1].next = node_val     
 
-          while  current:
+          while current is not None:
                if current.value % 2 == 0:
                     even_vals.append(current)
                     fix_next(even_vals, current)
@@ -828,13 +831,13 @@ def sort_asc_2(linked_list):
      index = None
      sol = current
 
-     if current == None:
+     if current is None:
           return
      else:
-          while current:
+          while current is not None:
                index = current.next 
 
-               while index:
+               while index is not None:
                     if current.value > index.value:
                          temp = current.value
                          current.value = index.value
@@ -1029,50 +1032,50 @@ def append_at_end(l_1, l_2):
 # loop_list.insert_after_value('second', 'third')
 # loop_list.insert_after_value('third', 'fourth')
 # loop_list.print()
-# # loop_list.detect_loop()
-# # # first ==> second ==> third ==> fourth ==> 
-# # #  FALSE - no loops found
+# loop_list.detect_loop()
+# # first ==> second ==> third ==> fourth ==> 
+# #  FALSE - no loops found
 
-# # loop_list.loop_to_value('second')
-# # loop_list.detect_loop() 
-# # # first ==> second ==> third ==> fourth ==> second
-# # #  TRUE - loop detected at Node >> second
+# loop_list.loop_to_value('second')
+# loop_list.detect_loop() 
+# # first ==> second ==> third ==> fourth ==> second
+# #  TRUE - loop detected at Node >> second
 
-# # loop_list.remove_loop()
-# # loop_list.detect_loop() 
-# # # first ==> second ==> third ==> fourth ==> 
-# # #  FALSE - no loops found
+# loop_list.remove_loop()
+# loop_list.detect_loop() 
+# # first ==> second ==> third ==> fourth ==> 
+# #  FALSE - no loops found
 
-# # loop_list.print()  # head --> first --> second --> third --> 
+# loop_list.print()  # head --> first --> second --> third --> 
 
-# # loop_list.reverse()
-# # loop_list.print()   # fourth --> third --> second --> first -->
-
-
-# # print(f'\n')
-# # loop_list.reverse()
-# # loop_list.print()  # first --> second --> third --> fourth --> ->
+# loop_list.reverse()
+# loop_list.print()   # fourth --> third --> second --> first -->
 
 
-# loop_list.remove_nth_from_end(1)  # first --> second --> third -->
+# print(f'\n')
+# loop_list.reverse()
+# loop_list.print()  # first --> second --> third --> fourth --> ->
+
+
+# loop_list.remove_nth_from_end(2)  
 # loop_list.print()
 
 
-# # loop_list.remove_nth_from_end(2)  # first --> second --> fourth --> 
-# # loop_list.print()
+# loop_list.remove_nth_from_end(2)  # first --> second --> fourth --> 
+# loop_list.print()
 
-# # loop_list.remove_nth_from_end(3)  # 
-# # loop_list.print()    # first --> third --> fourth --> 
+# loop_list.remove_nth_from_end(3)  # 
+# loop_list.print()    # first --> third --> fourth --> 
 
-# # loop_list.print()
-# # loop_list.remove_nth_from_end(4)  
-# # loop_list.print()    # second --> third --> fourth -->
+# loop_list.print()
+# loop_list.remove_nth_from_end(4)  
+# loop_list.print()    # second --> third --> fourth -->
 
-# # loop_list.remove_by_value2('first')
-# # loop_list.print()  # second --> third --> fourth --> 
+# loop_list.remove_by_value2('first')
+# loop_list.print()  # second --> third --> fourth --> 
 
-# # loop_list.remove_by_value('fourth')
-# # loop_list.print()
+# loop_list.remove_by_value('fourth')
+# loop_list.print()
 
 # loop_list.insert_before_value('first', 'dup')
 # loop_list.insert_before_value('third', 'dup')
@@ -1085,8 +1088,8 @@ def append_at_end(l_1, l_2):
 # # # loop_list.print()
 # loop_list.remove_by_value('dup')
 # loop_list.print()
-# # loop_list.remove_by_value('dup')
-# # loop_list.print()
+# loop_list.remove_by_value('dup')
+# loop_list.print()
 
 # t_list = LinkedList()
 # t_list.insert_at_head('first')
@@ -1111,7 +1114,7 @@ def append_at_end(l_1, l_2):
 # num_list.insert_at_tail(40)
 # num_list.insert_at_tail(50)
 # num_list.print()
-# 10 --> 20 --> 30 --> 40 --> 50 --> 
+# # 10 --> 20 --> 30 --> 40 --> 50 --> 
 
 # print(num_list.sum_total())
 
@@ -1122,12 +1125,12 @@ def append_at_end(l_1, l_2):
 # m_list.insert_after_value(2, 3)
 # m_list.print()
 
-# m_list.move_first_to_end2()
-# m_list.print()
+# # m_list.move_first_to_end2()
+# # m_list.print()
 
-# m_list.move_last_to_front()
+# # m_list.move_last_to_front()
 
-# # m_list.move_first_to_end()
+# m_list.move_first_to_end()
 # m_list.print()
 
 # l_1 = LinkedList()
@@ -1148,12 +1151,12 @@ def append_at_end(l_1, l_2):
 
 
 
-l_5 = LinkedList()
-l_5.insert_list_at_tail([0,7,2,1,4,6,8,5,10, 11])
-l_5.print()
+# l_5 = LinkedList()
+# l_5.insert_list_at_tail([0,7,2,1,4,6,8,5,10, 11])
+# l_5.print()
 
-l_5.move_odd_value_to_front_3()
-l_5.print()
+# l_5.move_odd_value_to_front_3()
+# l_5.print()
 
 # l_5.insert_at_head(4)
 # l_5.insert_at_head(1)
@@ -1176,8 +1179,8 @@ l_5.print()
 # sol.print()
 
 # sol = LinkedList()
-# # sol.head = merge_sorted_rec(l_1.head, l_2.head)
-# # sol.print() # 1 --> 1 --> 2 --> 3 --> 4 --> 4 -->
+# sol.head = merge_sorted_rec(l_1.head, l_2.head)
+# sol.print() # 1 --> 1 --> 2 --> 3 --> 4 --> 4 -->
 
 # sol.head = merge_sorted(l_1.head, l_2.head)
 # sol.print()   # 1 --> 1 --> 2 --> 3 --> 4 --> 4 -->
