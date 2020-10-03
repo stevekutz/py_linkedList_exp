@@ -216,15 +216,20 @@ class LinkedList:
           
           current = self.head
           prev_node = None
-          new_node = Node(new_value)
-
+          new_node = None
+     
 
           while current is not None:
                if current.value == value:
+                    new_node = Node(new_value)
                     break
                prev_node = current
                current = current.next
 
+          if new_node is None:
+               print(f' value {value} not found in list')
+               return
+               
           if prev_node is None:
                self.head = new_node
                new_node.next = current
@@ -232,13 +237,7 @@ class LinkedList:
           else:
                prev_node.next = new_node
                new_node.next = current
-
-
-               
-
-
-
-                         
+                      
      def remove_by_value(self, value):
           # Removes ALL occurrence of value found
           
@@ -988,6 +987,7 @@ new_list.insert_list_at_tail(my_list)
 # new_list.insert_before_value_2(0, 'Before')
 new_list.insert_before_value_2(2, 'Before')
 new_list.print()
+new_list.insert_before_value_2(100, 'Before')
 
 # new_list.print()   # New First --> 1 --> FirstTail --> Newer Tail --> 0 --> 1 --> 2 -->
 
