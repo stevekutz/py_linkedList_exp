@@ -212,6 +212,32 @@ class LinkedList:
                print(f' value {value} is not in linked list')          
 
 
+     def insert_before_value_2(self, value, new_value):
+          
+          current = self.head
+          prev_node = None
+          new_node = Node(new_value)
+
+
+          while current is not None:
+               if current.value == value:
+                    break
+               prev_node = current
+               current = current.next
+
+          if prev_node is None:
+               self.head = new_node
+               new_node.next = current
+
+          else:
+               prev_node.next = new_node
+               new_node.next = current
+
+
+               
+
+
+
                          
      def remove_by_value(self, value):
           # Removes ALL occurrence of value found
@@ -945,7 +971,7 @@ def append_at_end(l_1, l_2):
 #      new_list.insert_at_head("New First")
 #      new_list.print()        
 
-# new_list = LinkedList()
+new_list = LinkedList()
 # new_list.insert_at_head(1)
 # new_list.insert_at_head("New First")
 # new_list.print()  # New First --> 1 --> 
@@ -953,9 +979,16 @@ def append_at_end(l_1, l_2):
 # new_list.insert_at_tail("Newer Tail")
 # new_list.print()  # New First --> 1 --> FirstTail --> Newer Tail --> 
 
-# my_list = list(range(3))
-# print(f' {my_list}')  # [0, 1, 2]
-# new_list.insert_list_at_tail(my_list)
+my_list = list(range(3))
+print(f' {my_list}')  # [0, 1, 2]
+new_list.insert_list_at_tail(my_list)
+# new_list.print()
+# new_list.insert_before_value_2(1, 'Before')
+# new_list.print()
+# new_list.insert_before_value_2(0, 'Before')
+new_list.insert_before_value_2(2, 'Before')
+new_list.print()
+
 # new_list.print()   # New First --> 1 --> FirstTail --> Newer Tail --> 0 --> 1 --> 2 -->
 
 # new_list.remove_at_index(1)
