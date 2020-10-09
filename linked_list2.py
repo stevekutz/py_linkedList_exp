@@ -397,7 +397,9 @@ class LinkedList:
           current = self.head
           point_del = self.head
           
-
+          if n == 0:
+               print(f'zero from end can only return original list')
+               return current
 
           while current.next is not None:
                length += 1
@@ -423,25 +425,34 @@ class LinkedList:
 
 
      def remove_kth_from_end(self, k):
-          first_p = self.head
-          sec_p = self.head
-          count = 1
+          
+          current = slow = fast = self.head
 
-          while count <= k:
-               sec_p = sec_p.next
-               count += 1
-               # if count > k:
-               #      print(f' index out of bounds ')
-               #      return f'index out of bounds '
-          if sec_p is None:
-               self.head.value = self.head.next.value
-               self.head.next = self.head.next.next 
-               return
+          if current is None:
+               print(f' list is empty')
+               return None
 
-          while sec_p.next is not None:
-               first_p = first_p.next
-               sec_p = sec_p.next
-          first_p.next = first_p.next.next          
+          if k == 0:
+               print(f'zero from end can only return original list')
+               return current
+          
+          for i in range(k):
+               if i <= k - 1 and fast is None:
+                    print(f' index out of bounds')
+                    return None
+               fast = fast.next
+
+          if fast is None:
+               self.head = self.head.next
+               return self.head
+
+          while fast.next is not None:
+               fast = fast.next
+               slow = slow.next     
+
+          current = slow.next
+          slow.next = current.next 
+          return self.head     
 
 
 
@@ -1004,7 +1015,7 @@ my_list = [1, 2, 3, 4, 5]
 ll.insert_list_at_tail(my_list)
 ll.print()
 
-ll.remove_kth_from_end(5)
+ll.remove_kth_from_end(0)
 ll.print()
 
 
