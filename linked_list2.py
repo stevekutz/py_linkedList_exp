@@ -229,7 +229,7 @@ class LinkedList:
           if new_node is None:
                print(f' value {value} not found in list')
                return
-               
+
           if prev_node is None:
                self.head = new_node
                new_node.next = current
@@ -261,6 +261,8 @@ class LinkedList:
 
           if not_found:               
                print(f' value {value} is not in linked list ')
+
+
 
 
      def remove_by_value2(self, value):
@@ -418,6 +420,31 @@ class LinkedList:
           else:
                point_del.next = point_del.next.next  
                return self.head
+
+
+     def remove_kth_from_end(self, k):
+          first_p = self.head
+          sec_p = self.head
+          count = 1
+
+          while count <= k:
+               sec_p = sec_p.next
+               count += 1
+               # if count > k:
+               #      print(f' index out of bounds ')
+               #      return f'index out of bounds '
+          if sec_p is None:
+               self.head.value = self.head.next.value
+               self.head.next = self.head.next.next 
+               return
+
+          while sec_p.next is not None:
+               first_p = first_p.next
+               sec_p = sec_p.next
+          first_p.next = first_p.next.next          
+
+
+
 
      def remove_duplicates(self):
           current = self.head
@@ -970,24 +997,43 @@ def append_at_end(l_1, l_2):
 #      new_list.insert_at_head("New First")
 #      new_list.print()        
 
-new_list = LinkedList()
-# new_list.insert_at_head(1)
-# new_list.insert_at_head("New First")
-# new_list.print()  # New First --> 1 --> 
-# new_list.insert_at_tail("FirstTail")
-# new_list.insert_at_tail("Newer Tail")
-# new_list.print()  # New First --> 1 --> FirstTail --> Newer Tail --> 
 
-my_list = list(range(3))
-print(f' {my_list}')  # [0, 1, 2]
-new_list.insert_list_at_tail(my_list)
+ll = LinkedList()
+# my_list = [1, 1, 2, 1, 1, 3, 1]
+my_list = [1, 2, 3, 4, 5]
+ll.insert_list_at_tail(my_list)
+ll.print()
+
+ll.remove_kth_from_end(5)
+ll.print()
+
+
+# ll.insert_list_at_tail(my_list)
+# ll.print()
+# ll.remove_by_value(1)
+# ll.print()
+# ll.loop_to_value(2)
+# ll.detect_loop()
+
+
+# new_list = LinkedList()
+# # new_list.insert_at_head(1)
+# # new_list.insert_at_head("New First")
+# # new_list.print()  # New First --> 1 --> 
+# # new_list.insert_at_tail("FirstTail")
+# # new_list.insert_at_tail("Newer Tail")
+# # new_list.print()  # New First --> 1 --> FirstTail --> Newer Tail --> 
+
+# my_list = list(range(3))
+# print(f' {my_list}')  # [0, 1, 2]
+# new_list.insert_list_at_tail(my_list)
+# # new_list.print()
+# # new_list.insert_before_value_2(1, 'Before')
+# # new_list.print()
+# # new_list.insert_before_value_2(0, 'Before')
+# new_list.insert_before_value_2(2, 'Before')
 # new_list.print()
-# new_list.insert_before_value_2(1, 'Before')
-# new_list.print()
-# new_list.insert_before_value_2(0, 'Before')
-new_list.insert_before_value_2(2, 'Before')
-new_list.print()
-new_list.insert_before_value_2(100, 'Before')
+# new_list.insert_before_value_2(100, 'Before')
 
 # new_list.print()   # New First --> 1 --> FirstTail --> Newer Tail --> 0 --> 1 --> 2 -->
 
